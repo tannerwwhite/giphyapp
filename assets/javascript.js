@@ -6,8 +6,8 @@ $(document).ready(function() {
 	giphy.start();
 });
 
-var buttonsArray = ['painting', 'building', 'coding', 'crafting',
-	'cooking', 'dreaming'];
+var buttonsArray = ['greateful dead', 'music', 'coding', 'snow',
+	'dogs', 'cats'];
 var key = 'K3xJ8kOAPnBvxMLp5ICKimJoaQt74W9R';
 var queryURL = 'https://api.giphy.com/v1/gifs/search?&api_key=' + key + '&limit=10';
 
@@ -24,27 +24,19 @@ var giphy = {
 
 	renderButtons: function() {
 
-		// Delete any existing buttons prior to adding new buttons
-		// (this is necessary otherwise we will have repeat buttons)
+
 		$('#buttons').empty();
 
-		// Looping through the array of movies
+
 		for (var i = 0; i < buttonsArray.length; i++) {
 
-		  // Then dynamicaly generating buttons for each movie in the array.
-		  // This code $('<button>') is all jQuery needs to create the start and end tag. (<button></button>)
 		  var a = $('<li>');
 		  var b = $('<button>');
 		  $(b).on('click', giphy.clickButton);
-		  // Adding a class
 		  b.addClass('button');
-		  // Adding a data-attribute with a value of the movie at index i
 		  b.data('name', buttonsArray[i]);
-		  // Providing the button's text with a value of the movie at index i
 		  b.text(buttonsArray[i]);
-		  // Adding the button to the HTML
 		  $(a).html(b);
-		  // Adding the button to the HTML
 		  $('#buttons').append(a);
 		}
 	},
@@ -111,26 +103,21 @@ var giphy = {
 			var urlAnim = $(this).attr('data-anim')
 			var urlStill = $(this).attr('data-still')
 			var title = $(this).attr('data-title')
-			//generates image with same characteristics
 			var img = $('<img>');
 			img.attr('src', urlAnim);
 			img.attr('data-still', urlStill);
 			img.attr('data-anim', urlAnim);
-			//put this image in the modal
 			$('#modalImg').html(img);
 			$('#modalTitle').html(title);
 			giphy.modal.show();
 		},
 
 		show: function() {
-			// get modal and close button
 			var modal = $('.modal')[0];
 			var close = $('#close');
 
-			//show modal
 			modal.style.display = "block"
 
-			// hide modal when close button clicked
 			close.on('click', giphy.modal.hide);
 		},
 
